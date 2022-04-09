@@ -1,11 +1,11 @@
 body {
-  background: #cafaf6;
+  background: pink;
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .navbar {
-  background: whitesmoke;
+  background: #5bbad9;
   padding: 1em;
 }
 
@@ -16,41 +16,128 @@ body {
   font-size: 1.9em;
 }
 
-.navbar .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  place-content: space-between;
+.nav-item {
+  padding: 3em
 }
 
-.navbar .navbar .container {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 180px auto;
-      grid-template-columns: 180px auto;
+.primary-navbar {
+  border-radius: 4px;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
 }
 
-.navbar .navbar nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  background: none;
-  position: unset;
-  height: auto;
-  width: 100%;
+#navbar li {
+  float: left;
+  width: 20%;
+}
+
+#navbar a {
+  color: #848484;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  padding: 20px 0;
+  display: block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+/*# sourceMappingURL=Main.css.map */
+
+* {
+  box-sizing:border-box;
+}
+
+ul{
+  margin: 0;
   padding: 0;
 }
 
-.navbar .navbar nav ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+ul li{
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+
+  -webkit-user-select: none;
+  -moz-uzer-zelect: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.navbar .navbar nav a {
-  color: black;
+ul li:hover{
+  background: #ddd;
 }
-/*# sourceMappingURL=Main.css.map */
+
+ul li.checked{
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+ul li.checked::before{
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+.close{
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover{
+  background-color: indigo;
+  color: white;
+}
+
+.header{
+  background-color: indigo;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+.header:after{
+  content: "";
+  display: table;
+  clear:both;
+}
+
+input{
+  margin: 0;
+  border: none;
+  border-radius:0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+.addBtn{
+  padding: 10px;
+  width:25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover{
+  background-color: #bbb;
+}
