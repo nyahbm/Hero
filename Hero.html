@@ -6,27 +6,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hero</title>
     <link rel="stylesheet" href="CSS/Main.css">
+    <style>
+        .progress{
+            position: relative;
+            width: 210px;
+            height: 30px;
+            background: #9cbab4;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress__fill {
+            width: 0%;
+            height: 100%;
+            background: #009579;
+        }
+
+        .progress__text {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%)
+            
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="container">
-            <a class="logo" href="Hero.html">HERO</a>
-
-            <nav>
-                <ul class = "primary-nav">
-                    <li class="current"><a href="#">Home</a></li>
-                    <li><a href="#">Quests</a></li>
-                    <li><a href="#">Create Your Own</a></li>
-                    <li><a href="#">Badges</a></li>
-                </ul>
-
-                <ul class = "secondary-nav">
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Settings</a></li>
-                </ul>
-            </nav>
-        </div>
+    <div class="progress">
+        <div class="progress__fill"></div>
+        <span class="progress__text">0%</span>
     </div>
+
+    <script>
+        function updateProgressBar(progressBar, value){
+            progressBar.querySelector(".progress__fill").style.width = `${value}%`;
+            progressBar.querySelector(".progress_text").textContent = `${value}%`;
+        }
+    </script>
+
+    <script>
+        var myNodelist =
+        document.getElementsByTagName("LI");
+        var i;
+        for (i=0; i < myNodelist.length; i++){
+            var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+        }
+
+        var close = 
+        document.getElementsByClassName("close");
+        var i;
+        for (i = 0; i < close.length; i++){
+            close[i].onclick = function(){
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+
+        var list = document.querySelector('ul');
+        list.addEventListener('click', function(ev) {
+            if (ev.target.tagName === 'LI'){
+                ev.target.classList.toggle('checked');
+            }
+        }, false);
+        
+        function newElement(){
+            var li = document.createElement("li");
+            var inputValue = 
+        document.getElementById("myInput").value;
+            var t = document.createTextNode(inputValue);
+            li.appendChild(t);
+            if (inputValue === ''){
+                alert("You must write something!");
+            } else {
+                document.getElementById("myUL").appendChild(li);
+            }
+            document.getElementById("myInput").value = "";
+
+            var span = document.createElement("SPAN");
+            var txt = document.createTextNode("\u00D7");
+            span.className = "close";
+            span.appendChild(txt);
+            li.appendChild(span);
+
+            for (i = 0; i < close.length; i++){
+                close[i].onclick = function() {
+                    var div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+
+    </script>
+
+
+<div class="navbar">
+    <div class="container">
+        <a class="logo" href="Hero.html">HERO</a>
+            <a href="#" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Quests</a>
+            <a href="#" class="nav-item">Create Your Own</a>
+            <a href="#" class="nav-item">Badges</a>
+            <a href="#"class="nav-item">Contact</a>
+            <a href="#"class="nav-item">Settings</a>
+    </div>
+</div>
 
     <section class="Main_section">
         <div class="container">
@@ -34,16 +121,21 @@
         </div>
     </section>
 
-    <section class="Quests">
-        <div class="container">
-            <ul>
-                <li>Get out of bed</li>
-                <li>Eat a healthy breakfast</li>
-                <li>Shower</li>
-                <li>Go to work/school</li>
-                <li>Give gratitude</li>
-            </ul>
-        </div>
-    </section>
+    <div id="myDIV" class = "header">
+        <h2>My To Do List</h2>
+        <input type = "text" id="myInput"
+        placeholder="Title...">
+            <span onclick = "newElement()"
+        class="addBtn" > Add</span>
+    </div>
+
+    <ul id="myUL">
+        <li>Get out of bed</li>
+        <li>Eat a healthy breakfast</li>
+        <li>Shower</li>
+        <li>Go to work/school</li>
+    </ul>
+     
 </body>
 </html>
+
