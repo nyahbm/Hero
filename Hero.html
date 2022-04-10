@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
     <title>Hero</title>
     <link rel="stylesheet" href="CSS/Main.css">
     <style>
-        .progress{
+        .progress {
             position: relative;
             width: 210px;
             height: 30px;
@@ -17,116 +18,54 @@
         }
 
         .progress__fill {
-            width: 0%;
             height: 100%;
             background: #009579;
         }
 
-        .progress__text {
-            position: absolute;
-            top: 50%;
-            right: 5px;
-            transform: translateY(-50%)
-            
-        }
+        
     </style>
 </head>
+
 <body>
+
     <div class="progress">
         <div class="progress__fill"></div>
-        <span class="progress__text">0%</span>
+        <span class="progress__text" id="progress"></span>
     </div>
 
     <script>
-        function updateProgressBar(progressBar, value){
-            progressBar.querySelector(".progress__fill").style.width = `${value}%`;
-            progressBar.querySelector(".progress_text").textContent = `${value}%`;
+        function updateProgressBar(value) {
+            document.querySelector(".progress__fill").style.width = `${value}%`;
+            document.querySelector(".progress_text").textContent = `${value}%`;
         }
     </script>
 
-    <script>
-        var myNodelist =
-        document.getElementsByTagName("LI");
-        var i;
-        for (i=0; i < myNodelist.length; i++){
-            var span = document.createElement("SPAN");
-        var txt = document.createTextNode("\u00D7");
-        span.className = "close";
-        span.appendChild(txt);
-        myNodelist[i].appendChild(span);
-        }
-
-        var close = 
-        document.getElementsByClassName("close");
-        var i;
-        for (i = 0; i < close.length; i++){
-            close[i].onclick = function(){
-                var div = this.parentElement;
-                div.style.display = "none";
-            }
-        }
-
-        var list = document.querySelector('ul');
-        list.addEventListener('click', function(ev) {
-            if (ev.target.tagName === 'LI'){
-                ev.target.classList.toggle('checked');
-            }
-        }, false);
-        
-        function newElement(){
-            var li = document.createElement("li");
-            var inputValue = 
-        document.getElementById("myInput").value;
-            var t = document.createTextNode(inputValue);
-            li.appendChild(t);
-            if (inputValue === ''){
-                alert("You must write something!");
-            } else {
-                document.getElementById("myUL").appendChild(li);
-            }
-            document.getElementById("myInput").value = "";
-
-            var span = document.createElement("SPAN");
-            var txt = document.createTextNode("\u00D7");
-            span.className = "close";
-            span.appendChild(txt);
-            li.appendChild(span);
-
-            for (i = 0; i < close.length; i++){
-                close[i].onclick = function() {
-                    var div = this.parentElement;
-                    div.style.display = "none";
-                }
-            }
-        }
-
-    </script>
 
 
-<div class="navbar">
-    <div class="container">
-        <a class="logo" href="Hero.html">HERO</a>
-            <a href="#" class="nav-item">Home</a>
-            <a href="#" class="nav-item">Quests</a>
-            <a href="#" class="nav-item">Create Your Own</a>
-            <a href="#" class="nav-item">Badges</a>
-            <a href="#"class="nav-item">Contact</a>
-            <a href="#"class="nav-item">Settings</a>
+
+    <div class="navbar">
+        <div class="container">
+            <a class="logo" href="Hero.html">HERO</a>
+            <div class="center">
+                <a href="#" class="nav-item">Quests</a>
+                <a href="#" class="nav-item">Create Your Own</a>
+                <a href="#" class="nav-item">Badges</a>
+                <a href="#" class="nav-item">Contact</a>
+                <a href="#" class="nav-item">Settings</a>
+            </div>
+        </div>
     </div>
-</div>
 
     <section class="Main_section">
         <div class="container">
-            <img src="Hero-Images/Castle.jpg" alt="Illustration">
+            <img src="Hero-Images/Better_Castle.jpg" alt="Illustration" class="center">
         </div>
     </section>
 
-    <div id="myDIV" class = "header">
-        <h2>My To Do List</h2>
-        <input type = "text" id="myInput"
-        placeholder="Title...">
-            <span onclick = "newElement()"
-        class="addBtn" > Add</span>
+    <div id="myDIV" class="header">
+        <h2>Current Quests</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
     </div>
 
     <ul id="myUL">
@@ -135,7 +74,71 @@
         <li>Shower</li>
         <li>Go to work/school</li>
     </ul>
-     
+
 </body>
+
 </html>
 
+<script>
+    var myNodelist = document.getElementsByTagName("LI");
+    var i;
+    for (i = 0; i < myNodelist.length; i++) {
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        myNodelist[i].appendChild(span);
+    }
+
+    let progress = 0
+    document.getElementById("progress").innerHTML = progress;
+
+    var close = document.getElementsByClassName("close");
+    var i;
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.display = "none";
+        }
+    }
+
+    var list = document.querySelector('ul');
+    console.log(list);
+    list.addEventListener('click', function (ev) {
+        
+        if (ev.target.tagName === 'LI') {
+            console.log("Check");
+            
+            ev.target.classList.toggle('checked');
+            progress = (myNodelist.length) + progress + (18);//Change to checked divided by list length
+            updateProgressBar(progress);
+        }
+    }, false);
+
+    function newElement() {
+        var li = document.createElement("li");
+        var inputValue = document.getElementById("myInput").value;
+        var t = document.createTextNode(inputValue);
+        li.appendChild(t);
+        if (inputValue === '') {
+            alert("You must write something!");
+        } else {
+            document.getElementById("myUL").appendChild(li);
+        }
+        document.getElementById("myInput").value = "";
+
+        var span = document.createElement("SPAN");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "close";
+        span.appendChild(txt);
+        li.appendChild(span);
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+    }
+
+</script>
